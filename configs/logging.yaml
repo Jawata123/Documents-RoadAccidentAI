@@ -1,0 +1,70 @@
+###############################################################################
+# RoadAccidentAI Logging Configuration
+#
+# This file configures the Python logging framework used throughout the
+# application.
+#
+# All loggers in the project should obtain logger instances through
+# road_accident_detection.core.logging rather than configuring logging
+# individually.
+###############################################################################
+
+version: 1
+
+disable_existing_loggers: false
+
+###############################################################################
+# Formatters
+###############################################################################
+
+formatters:
+
+  standard:
+    format: "%(asctime)s | %(levelname)-8s | %(name)s | %(message)s"
+    datefmt: "%Y-%m-%d %H:%M:%S"
+
+  detailed:
+    format: "%(asctime)s | %(levelname)-8s | %(name)s | %(filename)s:%(lineno)d | %(message)s"
+    datefmt: "%Y-%m-%d %H:%M:%S"
+
+###############################################################################
+# Handlers
+###############################################################################
+
+handlers:
+
+  console:
+    class: logging.StreamHandler
+    level: INFO
+    formatter: standard
+    stream: ext://sys.stdout
+
+  file:
+    class: logging.FileHandler
+    level: DEBUG
+    formatter: detailed
+    filename: logs/road_accident_ai.log
+    encoding: utf-8
+
+###############################################################################
+# Loggers
+###############################################################################
+
+loggers:
+
+  road_accident_detection:
+    level: DEBUG
+    handlers:
+      - console
+      - file
+    propagate: false
+
+###############################################################################
+# Root Logger
+###############################################################################
+
+root:
+  level: INFO
+  handlers:
+    - console
+    - file

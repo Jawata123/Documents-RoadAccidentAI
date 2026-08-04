@@ -1,0 +1,132 @@
+###############################################################################
+# RoadAccidentAI Default Configuration
+#
+# This is the primary runtime configuration file for the application.
+#
+# All experiment-specific parameters should be configured here instead of
+# modifying the Python source code.
+#
+# Future research modules (tracking, trajectory analysis, accident reasoning,
+# benchmarking, REST API, dashboard, etc.) can extend this file without
+# breaking existing compatibility.
+###############################################################################
+
+application:
+  name: RoadAccidentAI
+  version: "0.1.0"
+
+###############################################################################
+# Logging
+###############################################################################
+
+logging:
+  level: INFO
+  save_to_file: true
+  file_name: road_accident_ai.log
+
+###############################################################################
+# Model
+###############################################################################
+
+model:
+  detector: ultralytics
+
+  # Path relative to project root
+  weights: models/yolo26n.pt
+
+  # auto | cpu | cuda | mps
+  device: auto
+
+  # Input image size
+  image_size: 640
+
+  # Detection confidence threshold
+  confidence: 0.25
+
+###############################################################################
+# Video
+###############################################################################
+
+video:
+  # Webcam:
+  # source: 0
+  #
+  # Video:
+  # source: datasets/test.mp4
+  #
+  # RTSP:
+  # source: rtsp://...
+  source: datasets/test.mp4
+
+  display: true
+
+  loop: false
+
+###############################################################################
+# Output
+###############################################################################
+
+output:
+  directory: outputs
+
+  save_video: false
+
+  save_frames: false
+
+###############################################################################
+# Visualization
+###############################################################################
+
+visualization:
+  enabled: true
+
+  draw_boxes: true
+
+  draw_labels: true
+
+  draw_confidence: true
+
+  draw_fps: true
+
+###############################################################################
+# Performance
+###############################################################################
+
+performance:
+  benchmark: false
+
+  warmup: true
+
+###############################################################################
+# Future Research Modules
+#
+# These sections intentionally remain empty placeholders for future
+# configuration expansion. They preserve the configuration structure without
+# introducing implementation at this stage.
+###############################################################################
+
+tracking: {}
+
+speed_estimation: {}
+
+trajectory_analysis: {}
+
+iou_analysis: {}
+
+temporal_reasoning: {}
+
+accident_detection: {}
+
+event_verification: {}
+
+alerting: {}
+
+evaluation: {}
+
+benchmarking: {}
+
+dashboard: {}
+
+api: {}
+
+docker: {}
